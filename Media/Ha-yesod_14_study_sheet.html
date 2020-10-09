@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset = "UTF-8">
+   <title>Ha-yesod Lesson 14</title> 
+       <link rel="stylesheet" type="text/css" href="hebrew.css"> 
+   </style> 
+</head> 
+<body> 
+   <h2 class="lesson_header"> Ha-yesod Lesson 14 </h2> 
+<a href="Ha-yesod-verbs.html" target="_blank">Ha-Yesod Verbs</a> <br>
+<a href="grammar_verbs.html" target="_blank">Verb Conjugation</a> 
+<h4> English, Hebrew Vocabulary:</h4> 
+<table > 
+<colgroup> 
+<col  style="text-align: left;"> 
+<col  style="text-align: right;" > 
+</colgroup> 
+<tbody> 
+<tr> 
+<td class="english_text">&nbsp &nbsp hot</td> 
+<td class="hebrew_text pointer" onclick="play('audio_1')">&nbsp חָם</td> 
+<audio id="audio_1" src="hot_forvo.mp3"></audio> 
+</tr> 
+<tr> 
+<td class="english_text">&nbsp &nbsp leg</td> 
+<td class="hebrew_text pointer" onclick="play('audio_2')">&nbsp רֶגֶל    נ</td> 
+<audio id="audio_2" src="leg_forvo.mp3"></audio> 
+</tr> 
+<tr> 
+<td class="english_text">&nbsp &nbsp path</td> 
+<td class="hebrew_text pointer" onclick="play('audio_3')">&nbsp שְׁבִיל     ז</td> 
+<audio id="audio_3" src="path_heb256.mp3"></audio> 
+</tr> 
+<tr> 
+<td class="english_text">&nbsp &nbsp pitcher</td> 
+<td class="hebrew_text pointer" onclick="play('audio_4')">&nbsp כַּד    ז</td> 
+<audio id="audio_4" src="pitcher_heb278.mp3"></audio> 
+</tr> 
+<tr> 
+<td class="english_text">&nbsp &nbsp police</td> 
+<td class="hebrew_text pointer" onclick="play('audio_5')">&nbsp מִשְׁטָרָה    נ</td> 
+<audio id="audio_5" src="police_forvo_achmo_he_משטרה.mp3"></audio> 
+</tr> 
+<tr> 
+<td class="english_text">&nbsp &nbsp sand</td> 
+<td class="hebrew_text pointer" onclick="play('audio_6')">&nbsp חוֹל     ז</td> 
+<audio id="audio_6" src="sand_heb325.mp3"></audio> 
+</tr> 
+</tbody> 
+</table> 
+<script src="hebrew.js" ></script> 
+<script> 
+let elements = document.getElementsByClassName("hebrew_input"); 
+for (var i = 0; i < elements.length; i++) {  
+    elements[i].addEventListener("keyup", convertTextToHebrew, false); 
+} 
+</script> 
+</tbody> 
+</body> 
+</html> 

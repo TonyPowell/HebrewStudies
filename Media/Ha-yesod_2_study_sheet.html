@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset = "UTF-8">
+   <title>Ha-yesod Lesson 2</title> 
+       <link rel="stylesheet" type="text/css" href="hebrew.css"> 
+   </style> 
+</head> 
+<body> 
+   <h2 class="lesson_header"> Ha-yesod Lesson 2 </h2> 
+<a href="Ha-yesod-verbs.html" target="_blank">Ha-Yesod Verbs</a> <br>
+<a href="grammar_verbs.html" target="_blank">Verb Conjugation</a> 
+<h4> English Vocabulary:</h4> 
+<table > 
+<colgroup> 
+<col  style="text-align: left;"> 
+<col  style="text-align: right;" > 
+</colgroup> 
+<tbody> 
+<td></td><td></td><td></td><td> <button class="hide_answers_button"  onclick="hide_answers()">Hide Answers</button></td><tr> 
+<td><input type="text" class="hebrew_input"  name="comment" value=" "></td> 
+<td class="english_text row_odd">&nbsp &nbsp all, every, any</td> 
+<td class="answer_button"><button onclick="toggle_answer_display('text_1')">Answer</button></td> 
+<td id="text_1" class="answer_text hebrew_text pointer"  onclick="play('audio_1')">כָּל</td><audio id="audio_1" src="all_forvo_yoshevvchoshev .mp3"></audio> 
+</tr> 
+<tr> 
+<td><input type="text" class="hebrew_input"  name="comment" value=" "></td> 
+<td class="english_text row_even">&nbsp &nbsp because</td> 
+<td class="answer_button"><button onclick="toggle_answer_display('text_2')">Answer</button></td> 
+<td id="text_2" class="answer_text hebrew_text pointer"  onclick="play('audio_2')">כִּי</td><audio id="audio_2" src="because_forvo_yoshevvchoshev.mp3"></audio> 
+</tr> 
+<tr> 
+<td><input type="text" class="hebrew_input"  name="comment" value=" "></td> 
+<td class="english_text row_odd">&nbsp &nbsp before, in front of</td> 
+<td class="answer_button"><button onclick="toggle_answer_display('text_3')">Answer</button></td> 
+<td id="text_3" class="answer_text hebrew_text pointer"  onclick="play('audio_3')">לִפנֵי  </td><audio id="audio_3" src="before_forvo_asole.mp3"></audio> 
+</tr> 
+<tr> 
+<td><input type="text" class="hebrew_input"  name="comment" value=" "></td> 
+<td class="english_text row_even">&nbsp &nbsp blackboard, calendar</td> 
+<td class="answer_button"><button onclick="toggle_answer_display('text_4')">Answer</button></td> 
+<td id="text_4" class="answer_text hebrew_text pointer"  onclick="play('audio_4')">לוּחַ   ז</td><audio id="audio_4" src="chalkboard_forvo_noamika.mp3"></audio> 
+</tr> 
+<tr> 
+<td><input type="text" class="hebrew_input"  name="comment" value=" "></td> 
+<td class="english_text row_odd">&nbsp &nbsp blackboards, calendars</td> 
+<td class="answer_button"><button onclick="toggle_answer_display('text_5')">Answer</button></td> 
+<td id="text_5" class="answer_text hebrew_text pointer"  onclick="play('audio_5')">לוּחוֹת</td><audio id="audio_5" src="blackboards_forvo_ ZiemniaK.mp3"></audio> 
+</tr> 
+<tr> 
+<td><input type="text" class="hebrew_input"  name="comment" value=" "></td> 
+<td class="english_text row_even">&nbsp &nbsp book</td> 
+<td class="answer_button"><button onclick="toggle_answer_display('text_6')">Answer</button></td> 
+<td id="text_6" class="answer_text hebrew_text pointer"  onclick="play('audio_6')">סַפָּר     ז</td><audio id="audio_6" src="book_heb26.mp3"></audio> 
+</tr> 
+<tr> 
+<td><input type="text" class="hebrew_input"  name="comment" value=" "></td> 
+<td class="english_text row_odd">&nbsp &nbsp books</td> 
+<td class="answer_button"><button onclick="toggle_answer_display('text_7')">Answer</button></td> 
+<td id="text_7" class="answer_text hebrew_text pointer"  onclick="play('audio_7')">סְפָרִים   ז</td><audio id="audio_7" src="books_forvo_noamika.mp3"></audio> 
+</tr> 
+<tr> 
+<td><input type="text" class="hebrew_input"  name="comment" value=" "></td> 
+<td class="english_text row_even">&nbsp &nbsp chalk</td> 
+<td class="answer_button"><button onclick="toggle_answer_display('text_8')">Answer</button></td> 
+<td id="text_8" class="answer_text hebrew_text pointer"  onclick="play('audio_8')">גִּיר    ז</td><audio id="audio_8" src="chalk_forvo_fotina.mp3"></audio> 
+</tr> 
+<tr> 
+<td><input type="text" class="hebrew_input"  name="comment" value=" "></td> 
+<td class="english_text row_odd">&nbsp &nbsp class</td> 
+<td class="answer_button"><button onclick="toggle_answer_display('text_9')">Answer</button></td> 
+<td id="text_9" class="answer_text hebrew_text pointer"  onclick="play('audio_9')">כִּתָה (כִּתּוֹת)      נ</td><audio id="audio_9" src="class_forvo_dizinteria.mp3"></audio> 
+</tr> 
+<tr> 
+<td><input type="text" class="hebrew_input"  name="comment" value=" "></td> 
+<td class="english_text row_even">&nbsp &nbsp here</td> 
+<td class="answer_button"><button onclick="toggle_answer_display('text_10')">Answer</button></td> 
+<td id="text_10" class="answer_text hebrew_text no-drop"  onclick="play('audio_10')">פֹּה</td></tr> 
+<tr> 
+<td><input type="text" class="hebrew_input"  name="comment" value=" "></td> 
+<td class="english_text row_odd">&nbsp &nbsp in the, with the (attached to the following word)</td> 
+<td class="answer_button"><button onclick="toggle_answer_display('text_11')">Answer</button></td> 
+<td id="text_11" class="answer_text hebrew_text no-drop"  onclick="play('audio_11')">...בַּ</td></tr> 
+<tr> 
+<td><input type="text" class="hebrew_input"  name="comment" value=" "></td> 
+<td class="english_text row_even">&nbsp &nbsp in, with  (attached to the following word)</td> 
+<td class="answer_button"><button onclick="toggle_answer_display('text_12')">Answer</button></td> 
+<td id="text_12" class="answer_text hebrew_text no-drop"  onclick="play('audio_12')">...בְּ</td></tr> 
+<tr> 
+<td><input type="text" class="hebrew_input"  name="comment" value=" "></td> 
+<td class="english_text row_odd">&nbsp &nbsp learns, studies   f. pl.</td> 
+<td class="answer_button"><button onclick="toggle_answer_display('text_13')">Answer</button></td> 
+<td id="text_13" class="answer_text hebrew_text pointer"  onclick="play('audio_13')">לוֹמְדוֹת</td><audio id="audio_13" src="learns_f_p_forvo_FrielleAridman_he_לומדות.mp3"></audio> 
+</tr> 
+<tr> 
+<td><input type="text" class="hebrew_input"  name="comment" value=" "></td> 
+<td class="english_text row_even">&nbsp &nbsp learns, studies   f.s</td> 
+<td class="answer_button"><button onclick="toggle_answer_display('text_14')">Answer</button></td> 
+<td id="text_14" class="answer_text hebrew_text no-drop"  onclick="play('audio_14')">לוֹמֶדֶת</td></tr> 
+<tr> 
+<td><input type="text" class="hebrew_input"  name="comment" value=" "></td> 
+<td class="english_text row_odd">&nbsp &nbsp learns, studies   m. pl.</td> 
+<td class="answer_button"><button onclick="toggle_answer_display('text_15')">Answer</button></td> 
+<td id="text_15" class="answer_text hebrew_text pointer"  onclick="play('audio_15')">לוֹמְדִים  </td><audio id="audio_15" src="learns_m_p_forvo_ ZiemniaK_he_לומדים.mp3"></audio> 
+</tr> 
+<tr> 
+<td><input type="text" class="hebrew_input"  name="comment" value=" "></td> 
+<td class="english_text row_even">&nbsp &nbsp learns, studies   m. s.</td> 
+<td class="answer_button"><button onclick="toggle_answer_display('text_16')">Answer</button></td> 
+<td id="text_16" class="answer_text hebrew_text pointer"  onclick="play('audio_16')">לוֹמֵד   </td><audio id="audio_16" src="learns_forvo_markuslebt.mp3"></audio> 
+</tr> 
+<tr> 
+<td><input type="text" class="hebrew_input"  name="comment" value=" "></td> 
+<td class="english_text row_odd">&nbsp &nbsp notebook</td> 
+<td class="answer_button"><button onclick="toggle_answer_display('text_17')">Answer</button></td> 
+<td id="text_17" class="answer_text hebrew_text pointer"  onclick="play('audio_17')">מַחְבֶּרֶת   נ</td><audio id="audio_17" src="notebook_forvo_achmo.mp3"></audio> 
+</tr> 
+<tr> 
+<td><input type="text" class="hebrew_input"  name="comment" value=" "></td> 
+<td class="english_text row_even">&nbsp &nbsp notebook</td> 
+<td class="answer_button"><button onclick="toggle_answer_display('text_18')">Answer</button></td> 
+<td id="text_18" class="answer_text hebrew_text pointer"  onclick="play('audio_18')">מַחְבֶּרֶת   נ</td><audio id="audio_18" src="notebook_forvo_liouboff.mp3"></audio> 
+</tr> 
+<tr> 
+<td><input type="text" class="hebrew_input"  name="comment" value=" "></td> 
+<td class="english_text row_odd">&nbsp &nbsp notebooks</td> 
+<td class="answer_button"><button onclick="toggle_answer_display('text_19')">Answer</button></td> 
+<td id="text_19" class="answer_text hebrew_text pointer"  onclick="play('audio_19')">מַחְבָּרוֹת     נ</td><audio id="audio_19" src="notebooks_forvo_assafs.mp3"></audio> 
+</tr> 
+<tr> 
+<td><input type="text" class="hebrew_input"  name="comment" value=" "></td> 
+<td class="english_text row_even">&nbsp &nbsp on what, about what</td> 
+<td class="answer_button"><button onclick="toggle_answer_display('text_20')">Answer</button></td> 
+<td id="text_20" class="answer_text hebrew_text no-drop"  onclick="play('audio_20')">עַל  מַה</td></tr> 
+<tr> 
+<td><input type="text" class="hebrew_input"  name="comment" value=" "></td> 
+<td class="english_text row_odd">&nbsp &nbsp on, about</td> 
+<td class="answer_button"><button onclick="toggle_answer_display('text_21')">Answer</button></td> 
+<td id="text_21" class="answer_text hebrew_text pointer"  onclick="play('audio_21')">עַל   </td><audio id="audio_21" src="on_forvo_yoshevvchoshev.mp3"></audio> 
+</tr> 
+<tr> 
+<td><input type="text" class="hebrew_input"  name="comment" value=" "></td> 
+<td class="english_text row_even">&nbsp &nbsp pen</td> 
+<td class="answer_button"><button onclick="toggle_answer_display('text_22')">Answer</button></td> 
+<td id="text_22" class="answer_text hebrew_text pointer"  onclick="play('audio_22')">עֵטִים) עֵט   ז)</td><audio id="audio_22" src="pen_forvo_matfish.mp3"></audio> 
+</tr> 
+<tr> 
+<td><input type="text" class="hebrew_input"  name="comment" value=" "></td> 
+<td class="english_text row_odd">&nbsp &nbsp says    f. pl.</td> 
+<td class="answer_button"><button onclick="toggle_answer_display('text_23')">Answer</button></td> 
+<td id="text_23" class="answer_text hebrew_text pointer"  onclick="play('audio_23')">אוֹמְרוֹת</td><audio id="audio_23" src="says_f_p_forvo_dianada_he_אומרות.mp3"></audio> 
+</tr> 
+<tr> 
+<td><input type="text" class="hebrew_input"  name="comment" value=" "></td> 
+<td class="english_text row_even">&nbsp &nbsp says    f. s.</td> 
+<td class="answer_button"><button onclick="toggle_answer_display('text_24')">Answer</button></td> 
+<td id="text_24" class="answer_text hebrew_text pointer"  onclick="play('audio_24')">אוֹמֶרֶת</td><audio id="audio_24" src="says_f_s_forvo_markuslebt_he_אומרת.mp3"></audio> 
+</tr> 
+<tr> 
+<td><input type="text" class="hebrew_input"  name="comment" value=" "></td> 
+<td class="english_text row_odd">&nbsp &nbsp says    m. pl.</td> 
+<td class="answer_button"><button onclick="toggle_answer_display('text_25')">Answer</button></td> 
+<td id="text_25" class="answer_text hebrew_text pointer"  onclick="play('audio_25')">אוֹמְרִים</td><audio id="audio_25" src="says_m_p_forvo_markuslebt_he_אומרים.mp3"></audio> 
+</tr> 
+<tr> 
+<td><input type="text" class="hebrew_input"  name="comment" value=" "></td> 
+<td class="english_text row_even">&nbsp &nbsp says    m. s.</td> 
+<td class="answer_button"><button onclick="toggle_answer_display('text_26')">Answer</button></td> 
+<td id="text_26" class="answer_text hebrew_text pointer"  onclick="play('audio_26')">אוֹמֵר</td><audio id="audio_26" src="says_forvo_glorcky.mp3"></audio> 
+</tr> 
+<tr> 
+<td><input type="text" class="hebrew_input"  name="comment" value=" "></td> 
+<td class="english_text row_odd">&nbsp &nbsp sits, sits down    f. pl.</td> 
+<td class="answer_button"><button onclick="toggle_answer_display('text_27')">Answer</button></td> 
+<td id="text_27" class="answer_text hebrew_text pointer"  onclick="play('audio_27')">יוֹשְׁבוֹת</td><audio id="audio_27" src="sits_f_p_forvo_tasgiv_he_יושבות.mp3"></audio> 
+</tr> 
+<tr> 
+<td><input type="text" class="hebrew_input"  name="comment" value=" "></td> 
+<td class="english_text row_even">&nbsp &nbsp sits, sits down    f. s</td> 
+<td class="answer_button"><button onclick="toggle_answer_display('text_28')">Answer</button></td> 
+<td id="text_28" class="answer_text hebrew_text pointer"  onclick="play('audio_28')">יוֹשֶׁבֶת</td><audio id="audio_28" src="sits_f_s_forvo_liouboffhe_יושבת.mp3"></audio> 
+</tr> 
+<tr> 
+<td><input type="text" class="hebrew_input"  name="comment" value=" "></td> 
+<td class="english_text row_odd">&nbsp &nbsp sits, sits down    m. pl.</td> 
+<td class="answer_button"><button onclick="toggle_answer_display('text_29')">Answer</button></td> 
+<td id="text_29" class="answer_text hebrew_text pointer"  onclick="play('audio_29')">יוֹשְׁבִים</td><audio id="audio_29" src="sits_m_p_forvo_tasgiv_he_יושבים.mp3"></audio> 
+</tr> 
+<tr> 
+<td><input type="text" class="hebrew_input"  name="comment" value=" "></td> 
+<td class="english_text row_even">&nbsp &nbsp sits, sits down    m. s.</td> 
+<td class="answer_button"><button onclick="toggle_answer_display('text_30')">Answer</button></td> 
+<td id="text_30" class="answer_text hebrew_text pointer"  onclick="play('audio_30')">יוֹשֵׁב</td><audio id="audio_30" src="sits_forvo_achmo.mp3"></audio> 
+</tr> 
+<tr> 
+<td><input type="text" class="hebrew_input"  name="comment" value=" "></td> 
+<td class="english_text row_odd">&nbsp &nbsp stands, stands up   f. pl.</td> 
+<td class="answer_button"><button onclick="toggle_answer_display('text_31')">Answer</button></td> 
+<td id="text_31" class="answer_text hebrew_text pointer"  onclick="play('audio_31')">עוֹמְדוֹת</td><audio id="audio_31" src="stands_f_p_forvo_hava_l_he_עומדות.mp3"></audio> 
+</tr> 
+<tr> 
+<td><input type="text" class="hebrew_input"  name="comment" value=" "></td> 
+<td class="english_text row_even">&nbsp &nbsp stands, stands up   f. s.</td> 
+<td class="answer_button"><button onclick="toggle_answer_display('text_32')">Answer</button></td> 
+<td id="text_32" class="answer_text hebrew_text pointer"  onclick="play('audio_32')">עוֹמֶדֶת</td><audio id="audio_32" src="stands_f_s_forvo_ hava_l_he_עומדת.mp3"></audio> 
+</tr> 
+<tr> 
+<td><input type="text" class="hebrew_input"  name="comment" value=" "></td> 
+<td class="english_text row_odd">&nbsp &nbsp stands, stands up   m. pl.</td> 
+<td class="answer_button"><button onclick="toggle_answer_display('text_33')">Answer</button></td> 
+<td id="text_33" class="answer_text hebrew_text pointer"  onclick="play('audio_33')">עוֹמְדִים</td><audio id="audio_33" src="stands_m_p_forvo_noamika_he_עומדים.mp3"></audio> 
+</tr> 
+<tr> 
+<td><input type="text" class="hebrew_input"  name="comment" value=" "></td> 
+<td class="english_text row_even">&nbsp &nbsp stands, stands up   m. s.</td> 
+<td class="answer_button"><button onclick="toggle_answer_display('text_34')">Answer</button></td> 
+<td id="text_34" class="answer_text hebrew_text pointer"  onclick="play('audio_34')">עוֹמֶד</td><audio id="audio_34" src="stands_forvo_dianada.mp3"></audio> 
+</tr> 
+<tr> 
+<td><input type="text" class="hebrew_input"  name="comment" value=" "></td> 
+<td class="english_text row_odd">&nbsp &nbsp thinks   f. pl.</td> 
+<td class="answer_button"><button onclick="toggle_answer_display('text_35')">Answer</button></td> 
+<td id="text_35" class="answer_text hebrew_text pointer"  onclick="play('audio_35')">חוֹשְׁבוֹת</td><audio id="audio_35" src="thinks_f_p_forvo_FrielleAridman_he_חושבות.mp3"></audio> 
+</tr> 
+<tr> 
+<td><input type="text" class="hebrew_input"  name="comment" value=" "></td> 
+<td class="english_text row_even">&nbsp &nbsp thinks   f. s.</td> 
+<td class="answer_button"><button onclick="toggle_answer_display('text_36')">Answer</button></td> 
+<td id="text_36" class="answer_text hebrew_text pointer"  onclick="play('audio_36')">חוֹשֶׁבֶת</td><audio id="audio_36" src="thinks_f_s_forvo_noamika_he_חושבת.mp3"></audio> 
+</tr> 
+<tr> 
+<td><input type="text" class="hebrew_input"  name="comment" value=" "></td> 
+<td class="english_text row_odd">&nbsp &nbsp thinks   m. pl.</td> 
+<td class="answer_button"><button onclick="toggle_answer_display('text_37')">Answer</button></td> 
+<td id="text_37" class="answer_text hebrew_text pointer"  onclick="play('audio_37')">חוֹשְׁבִים</td><audio id="audio_37" src="thinks_m_p_forvo_FrielleAridman_he_חושבים.mp3"></audio> 
+</tr> 
+<tr> 
+<td><input type="text" class="hebrew_input"  name="comment" value=" "></td> 
+<td class="english_text row_even">&nbsp &nbsp thinks   m. s.</td> 
+<td class="answer_button"><button onclick="toggle_answer_display('text_38')">Answer</button></td> 
+<td id="text_38" class="answer_text hebrew_text pointer"  onclick="play('audio_38')">חוֹשֵׁב</td><audio id="audio_38" src="thinks_forvo_yuval.mp3"></audio> 
+</tr> 
+<tr> 
+<td><input type="text" class="hebrew_input"  name="comment" value=" "></td> 
+<td class="english_text row_odd">&nbsp &nbsp to</td> 
+<td class="answer_button"><button onclick="toggle_answer_display('text_39')">Answer</button></td> 
+<td id="text_39" class="answer_text hebrew_text pointer"  onclick="play('audio_39')">אֵל</td><audio id="audio_39" src="to_forvo_ahuva.mp3"></audio> 
+</tr> 
+<tr> 
+<td><input type="text" class="hebrew_input"  name="comment" value=" "></td> 
+<td class="english_text row_even">&nbsp &nbsp to learn, to study     v.</td> 
+<td class="answer_button"><button onclick="toggle_answer_display('text_40')">Answer</button></td> 
+<td id="text_40" class="answer_text hebrew_text pointer"  onclick="play('audio_40')">לִלְמוֹד </td><audio id="audio_40" src="to_learn_forvo_silhoutte_he_ללמוד.mp3"></audio> 
+</tr> 
+<tr> 
+<td><input type="text" class="hebrew_input"  name="comment" value=" "></td> 
+<td class="english_text row_odd">&nbsp &nbsp to say, to tell     v.</td> 
+<td class="answer_button"><button onclick="toggle_answer_display('text_41')">Answer</button></td> 
+<td id="text_41" class="answer_text hebrew_text pointer"  onclick="play('audio_41')">לוֹמַר </td><audio id="audio_41" src="to_say_forvo_noamika_he_לומר.mp3"></audio> 
+</tr> 
+<tr> 
+<td><input type="text" class="hebrew_input"  name="comment" value=" "></td> 
+<td class="english_text row_even">&nbsp &nbsp to sit, to settle     v.</td> 
+<td class="answer_button"><button onclick="toggle_answer_display('text_42')">Answer</button></td> 
+<td id="text_42" class="answer_text hebrew_text pointer"  onclick="play('audio_42')">לָשֶׁבֶת </td><audio id="audio_42" src="to_sit_forvo_noamika_he_לשבת.mp3"></audio> 
+</tr> 
+<tr> 
+<td><input type="text" class="hebrew_input"  name="comment" value=" "></td> 
+<td class="english_text row_odd">&nbsp &nbsp to stand, to stop, to stand still, to be about to    v.</td> 
+<td class="answer_button"><button onclick="toggle_answer_display('text_43')">Answer</button></td> 
+<td id="text_43" class="answer_text hebrew_text pointer"  onclick="play('audio_43')">לַעֲמוֹד </td><audio id="audio_43" src="to_stand_forvo_odedee_he_לעמוד.mp3"></audio> 
+</tr> 
+<tr> 
+<td><input type="text" class="hebrew_input"  name="comment" value=" "></td> 
+<td class="english_text row_even">&nbsp &nbsp to tell      v.</td> 
+<td class="answer_button"><button onclick="toggle_answer_display('text_44')">Answer</button></td> 
+<td id="text_44" class="answer_text hebrew_text pointer"  onclick="play('audio_44')">לְסַפֵּר</td><audio id="audio_44" src="to_tell_forvo_noamika_he_לספר.mp3"></audio> 
+</tr> 
+<tr> 
+<td><input type="text" class="hebrew_input"  name="comment" value=" "></td> 
+<td class="english_text row_odd">&nbsp &nbsp to think     v.</td> 
+<td class="answer_button"><button onclick="toggle_answer_display('text_45')">Answer</button></td> 
+<td id="text_45" class="answer_text hebrew_text pointer"  onclick="play('audio_45')">לַחְשׁוֹב </td><audio id="audio_45" src="to_think_forvo_achmo_he_לחשוב.mp3"></audio> 
+</tr> 
+<tr> 
+<td><input type="text" class="hebrew_input"  name="comment" value=" "></td> 
+<td class="english_text row_even">&nbsp &nbsp where</td> 
+<td class="answer_button"><button onclick="toggle_answer_display('text_46')">Answer</button></td> 
+<td id="text_46" class="answer_text hebrew_text pointer"  onclick="play('audio_46')">אֵיפֹה</td><audio id="audio_46" src="where_forvo_markuslebt_he_איפה.mp3"></audio> 
+</tr> 
+<tr> 
+<td><input type="text" class="hebrew_input"  name="comment" value=" "></td> 
+<td class="english_text row_odd">&nbsp &nbsp why</td> 
+<td class="answer_button"><button onclick="toggle_answer_display('text_47')">Answer</button></td> 
+<td id="text_47" class="answer_text hebrew_text pointer"  onclick="play('audio_47')">מַדּוּעַ</td><audio id="audio_47" src="why_forvo_achmo.mp3"></audio> 
+</tr> 
+<tr> 
+<td><input type="text" class="hebrew_input"  name="comment" value=" "></td> 
+<td class="english_text row_even">&nbsp &nbsp with what</td> 
+<td class="answer_button"><button onclick="toggle_answer_display('text_48')">Answer</button></td> 
+<td id="text_48" class="answer_text hebrew_text pointer"  onclick="play('audio_48')">בַּמֶּה</td><audio id="audio_48" src="with_what_forvo_warlax_he_במה.mp3"></audio> 
+</tr> 
+<tr> 
+<td><input type="text" class="hebrew_input"  name="comment" value=" "></td> 
+<td class="english_text row_odd">&nbsp &nbsp writes , writes down   f. pl.</td> 
+<td class="answer_button"><button onclick="toggle_answer_display('text_49')">Answer</button></td> 
+<td id="text_49" class="answer_text hebrew_text pointer"  onclick="play('audio_49')">כּוֹתְבוֹת</td><audio id="audio_49" src="writes_f_p_forvo_zorbama_he_כותבות.mp3"></audio> 
+</tr> 
+<tr> 
+<td><input type="text" class="hebrew_input"  name="comment" value=" "></td> 
+<td class="english_text row_even">&nbsp &nbsp writes , writes down   f. s.</td> 
+<td class="answer_button"><button onclick="toggle_answer_display('text_50')">Answer</button></td> 
+<td id="text_50" class="answer_text hebrew_text pointer"  onclick="play('audio_50')">כּוֹתֶבֶת</td><audio id="audio_50" src="writes_f_s_forvo_ PupsGesicht_he_כותבת.mp3"></audio> 
+</tr> 
+<tr> 
+<td><input type="text" class="hebrew_input"  name="comment" value=" "></td> 
+<td class="english_text row_odd">&nbsp &nbsp writes , writes down   m. pl.</td> 
+<td class="answer_button"><button onclick="toggle_answer_display('text_51')">Answer</button></td> 
+<td id="text_51" class="answer_text hebrew_text pointer"  onclick="play('audio_51')">כּוֹתְבִים</td><audio id="audio_51" src="writes_m_p_forvo_zorbama_he_כותבים.mp3"></audio> 
+</tr> 
+<tr> 
+<td><input type="text" class="hebrew_input"  name="comment" value=" "></td> 
+<td class="english_text row_even">&nbsp &nbsp writes , writes down   m. s.</td> 
+<td class="answer_button"><button onclick="toggle_answer_display('text_52')">Answer</button></td> 
+<td id="text_52" class="answer_text hebrew_text pointer"  onclick="play('audio_52')">כּוֹתֵב</td><audio id="audio_52" src="writes_forvo_pupsgesicht.mp3"></audio> 
+</tr> 
+</tbody> 
+</table> 
+<script src="hebrew.js" ></script> 
+<script> 
+let elements = document.getElementsByClassName("hebrew_input"); 
+for (var i = 0; i < elements.length; i++) {  
+    elements[i].addEventListener("keyup", convertTextToHebrew, false); 
+} 
+</script> 
+</tbody> 
+</body> 
+</html> 

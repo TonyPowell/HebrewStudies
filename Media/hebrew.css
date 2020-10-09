@@ -1,0 +1,190 @@
+h3 {
+	color: red;
+	text-align: center;
+}
+h4 {
+	color: lightblue;
+	text-align: left;
+}
+
+p {
+  text-align: left;
+  color: #2c6cac;
+  font-family:Arial, Helvetica, sans-serif;
+  font-size:32px;
+} 
+
+button {
+	font-size:20px;
+	background-color: lightblue
+}
+#book {
+	color: green;
+	text-align: left;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size:20px;
+}
+#desc {
+  text-align: left;
+  color: black;
+  font-family:Arial, Helvetica, sans-serif;
+  font-size:20px;
+} 
+
+pre {
+  font-family:Arial, Helvetica, sans-serif;
+  font-size:32px;
+	
+}
+	
+.local_href {
+  text-align: left;
+  color: green;
+  font-family:Arial, Helvetica, sans-serif;
+  font-size:20px;	
+}
+
+.lesson_header
+{
+color:red;
+font-family:New Times Roman; 
+font-size:28px;
+text-align: center;
+}	
+.english_input
+{
+color:blue; 
+font-family:Arial, Helvetica, sans-serif;  
+font-size:26px;
+text-align: left;
+}
+
+.english_text
+{
+color:blue; 
+font-family:Arial, Helvetica, sans-serif;  
+font-size:26px;
+text-align: left;
+}
+
+.hebrew_input
+{
+color:blue;
+font-family:Arial,  Helvetica, sans-serif; 
+font-size:34px;
+text-align: left;
+}
+
+.hebrew_text
+{
+color:blue;
+font-family:Arial,  Helvetica, sans-serif; 
+font-size:34px;
+text-align: right;
+}
+
+.hebrew_small
+{
+color:blue;
+font-family:Arial; 
+font-size:21px;
+text-align: left;
+}
+.hebrew_medium
+{
+color:blue;
+font-family:Arial; 
+font-size:26px;
+text-align: left;
+
+}
+.hebrew_large
+{
+color:blue;
+font-family:Arial; 
+font-size:38px;
+text-align: right;
+}
+
+.hebrew_shoresh
+{
+color:darkred;
+font-family:Arial; 
+font-size:38px;
+text-align: right;
+text-decoration: none;
+}
+
+.hebrew_header 
+{
+color:blue;
+font-family:New Times Roman; 
+font-size:48px;
+text-align: center;
+}
+
+.th_verb
+{
+font-family:New Times Roman;
+font-size:20px;
+text-align: right;
+}
+
+
+
+.answer_text
+{
+/* opacity: 0.0; */
+display: none;  
+}
+
+.answer_button
+{
+color:blue; 
+font-family:Arial, Helvetica, sans-serif;  
+font-size:26px;
+text-align: left;
+}
+
+.row_odd{background-color: #e6f2ff}
+.row_even{background-color: white}
+
+
+
+
+.alias {cursor: alias;}
+.all-scroll {cursor: all-scroll;}
+.auto {cursor: auto;}
+.cell {cursor: cell;}
+.context-menu {cursor: context-menu;}
+.col-resize {cursor: col-resize;}
+.copy {cursor: copy;}
+.crosshair {cursor: crosshair;}
+.default {cursor: default;}
+.e-resize {cursor: e-resize;}
+.ew-resize {cursor: ew-resize;}
+.grab {cursor: -webkit-grab; cursor: grab;}
+.grabbing {cursor: -webkit-grabbing; cursor: grabbing;}
+.help {cursor: help;}
+.move {cursor: move;}
+.n-resize {cursor: n-resize;}
+.ne-resize {cursor: ne-resize;}
+.nesw-resize {cursor: nesw-resize;}
+.ns-resize {cursor: ns-resize;}
+.nw-resize {cursor: nw-resize;}
+.nwse-resize {cursor: nwse-resize;}
+.no-drop {cursor: no-drop;}
+.none {cursor: none;}
+.not-allowed {cursor: not-allowed;}
+.pointer {cursor: pointer;}
+.progress {cursor: progress;}
+.row-resize {cursor: row-resize;}
+.s-resize {cursor: s-resize;}
+.se-resize {cursor: se-resize;}
+.sw-resize {cursor: sw-resize;}
+.text {cursor: text;}
+.url {cursor: url(myBall.cur),auto;}
+.w-resize {cursor: w-resize;}
+.wait {cursor: wait;}
+.zoom-in {cursor: zoom-in;}
+.zoom-out {cursor: zoom-out;}
