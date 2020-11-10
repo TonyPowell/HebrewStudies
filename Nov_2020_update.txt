@@ -1,0 +1,8 @@
+Added vocabulary lists and study sheets for Lessons and Categories selectable
+in the corresponding dropdown boxes.
+Updated Ha-yesod-verbs.html to include all the verbs up to Lesson 14.
+Added to all the 3 letter roots of the verbs a link to the corresponding
+conjugation webpage for that verb at pealim.com accessible by clicking
+the Pealim icon next to the root.
+ Added function to transliterate English letter keyboard entries to Hebrew
+letters for input to the Hebrew entry box.
