@@ -174,12 +174,27 @@ def clear_text(widget):
     elif widget.whoami == AUDIO_MGR_CATEGORY_CBO:
         audio_mgr.category_lbl.configure(fg=FG_NOT_A_MEMBER)
 
+
+def contains_niqqud(string):
+    """
+      Detectc the presence of niqqud in the Hebrew text
+    """
+    
+    niqqud = ['\u05B0','\u05B1','\u05B2','\u05B3','\u05B4',
+              '\u05B5','\u05B6','\u05B7','\u05B8','\u05B9',
+              '\u05BA','\u05BB','\u05BC','\u05BD','\u05C1',
+              '\u05C2','\u05C4','\u05C5']
+    for i, char in enumerate(string):
+        if char in niqqud:
+            return True
+    return False
+
 #_____________________________________
 #         contains_text
 #_____________________________________
 def contains_text(string):
     """
-cate     Verifies a string contains one or more alpha-numeric
+     Verifies a string contains one or more alpha-numeric
     characters whether the text is English or Hebrew
     """
     return bool(re.search('[a-zA-Z0-9]+', string)) or \
@@ -494,8 +509,7 @@ def search_website(event=None):
 
 
     #  If the text being searched for on the Doitinhebrew website
-    # is not Hebrew then switch to its English webpage
-    #if website_id == 'd' and search_source != AUDIO_MGR_HEBREW_TEXT:
+    # is English text then switch to its English webpage
     if website_id == 'd' and bool(re.search('[a-zA-Z]+', search_string)):
         webpage = ('https://www.doitinhebrew.com/Translate/'
                    'Default.aspx?l1=en&l2=iw&s=1&txt=')
@@ -1140,6 +1154,7 @@ class AudioMgr():
                                  'Default.aspx?kb=IL%20Hebrew%20Phonetic&l1=iw&'
                                  'l2=en&txt=')),
            'Forvo':('f', 'https://he.forvo.com/search/'),
+           'Glosbe':('s', 'https://en.glosbe.com/he/en/'),
            'Google':('g', ('https://translate.google.com/'
                            '#view=home&op=translate&sl=iw&tl=en&text=')),
            'Lexilogos':('l', ('https://www.lexilogos.com/'
@@ -1170,11 +1185,15 @@ class AudioMgr():
                                     textvariable=self.hebrew)
         self.hebrew_text.config(font=("Arial", 18))
         self.hebrew_text.whoami = AUDIO_MGR_HEBREW_TEXT
-
+        
+        self.hebrew.trace('w', self.transliterate)
+        
         #  Bind control key combinations to search for the
         # displayed Hebrew text on the following websites:
         #  <Control d> for Doitinhebrew    (doitinhebrew.com)
         #  <Control f> for Forvo           (he.forvo.com)
+        #  <Control s> for Forvo           (glosbe.com)
+        #  <Control g> for Forvo           (google.com)
         #  <Control h> for Hebrew keyboard (lexilogos.com/keyboard)
         #  <Control l> for Lexilogos       (lexilogos.com)
         #  <Control m> for Milog           (milog.co.il)
@@ -1195,6 +1214,7 @@ class AudioMgr():
                '<Control-b> to search Bing.com.\n'
                '<Control-d> to search Doitinhebrew.com.\n'
                '<Control-f> to search Forvo.com\n'
+               '<Control-s> to search Glosbe.com\n'
                '<Control-g> to search Google.com\n'
                '<Control-k> for Hebrew keyboard\n'
                '<Control-l> to search Lexilogos.com\n'
@@ -1609,6 +1629,22 @@ class AudioMgr():
         if DEBUG:
             display_function_completion(current_function)
 
+    #_____________________________________
+    #       contains_niqqud
+    #_____________________________________
+    def contains_niqqud(self, string):
+        """
+          Detectc the presence of niqqud in the Hebrew text
+        """
+        
+        niqqud = ['\u05B0','\u05B1','\u05B2','\u05B3','\u05B4',
+                  '\u05B5','\u05B6','\u05B7','\u05B8','\u05B9',
+                  '\u05BA','\u05BB','\u05BC','\u05BD','\u05C1',
+                  '\u05C2','\u05C4','\u05C5']
+        for i, char in enumerate(string):
+            if char in niqqud:
+                return True
+        return False
 
 
     #_____________________________________
@@ -1890,6 +1926,10 @@ class AudioMgr():
         self.website_menu.entryconfigure("Forvo",
                                          command=lambda: widget.event_generate(forvo_key))
 
+        glosbe_key = f'<Control-{self.website_options["Glosbe"][0]}>'
+        self.website_menu.entryconfigure("Glosbe",
+                                         command=lambda: widget.event_generate(glosbe_key))
+        
         google_key = f'<Control-{self.website_options["Google"][0]}>'
         self.website_menu.entryconfigure("Google",
                                          command=lambda: widget.event_generate(google_key))
@@ -1982,6 +2022,7 @@ class AudioMgr():
         database_btn.place(x = 570, y = 270)
         
         sql_win.mainloop()
+
 
     #_____________________________________
     #       execute_audio_option
@@ -3000,6 +3041,48 @@ class AudioMgr():
 
         if DEBUG:
             display_function_completion(current_function)
+
+    #_____________________________________
+    #       transliterate
+    #_____________________________________
+    def transliterate(self, a, b, c):
+        """
+         Transliterates English characters to Hebrew
+        characters according to the key:value members 
+        in the dictionary hebrew_char.
+         If the text contains any niqqud then 
+        it's assumed that the Hebrew text was 
+        pasted into the entry box and it isn't
+        transliterated. This simple function 
+        doesn't proceess the niqqud. 
+         Note that pasting an English letter into
+        Hebrew text that contains any niqqud leaves
+        the English letter as is. It is NOT 
+        transliterated.
+        """
+        hebrew_char = {'a': 'א', 'b': 'ב', 'c': 'כ', 'd': 'ד',  
+                       'e': 'ע', 'f': 'פ', 'g': 'ג', 'h': 'ה',
+                       'i': 'י', 'j': 'ח', 'k': 'ק', 'l': 'ל',
+                       'm': 'מ', 'n': 'נ', 'o': 'ו', 'p': 'פ',
+                       'q': 'ק', 'r': 'ר', 's': 'ס', 't': 'ת',
+                       'u': 'ו', 'v': 'ו', 'w': 'ש', 'x': 'צ',
+                       'u': 'ו', 'v': 'ו', 'w': 'ש', 'x': 'צ',
+                       'y': 'י', 'z': 'ז', 'T': 'ט', 'C': 'ך',
+                       'M': 'ם', 'N': 'ן', 'P': 'ף', 'X': 'ץ'									 
+                      }
+        entry_text =  self.hebrew.get()
+        print('Entry text = ', entry_text)
+        if not self.contains_niqqud(entry_text):
+            self.hebrew_text.delete(0, 'end')
+            for i, char in enumerate(entry_text):
+                if char in hebrew_char.keys():
+                    print('hebrew = ', i, hebrew_char[char])
+                    self.hebrew_text.insert(i, hebrew_char[char])
+                elif char in hebrew_char.values():
+                    self.hebrew_text.insert(i, char)
+                elif not bool(re.search('[a-zA-Z]', char)):
+                    self.hebrew_text.insert(i, char)
+                    
 
 #############################
 #           Main
