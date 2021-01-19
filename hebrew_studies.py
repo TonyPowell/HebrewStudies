@@ -373,6 +373,7 @@ def search_audio_table(event=None):
                  ' FROM hebrew_audio'
                  f' WHERE english LIKE "%{search}%"'
                  f' OR hebrew LIKE "%{search}%"'
+                 f' OR hebrew_no_niqqud LIKE "%{search}%"'
                  '  ORDER BY english;')
         if DEBUG:
             display_sql(current_function, query)
@@ -1293,7 +1294,8 @@ class AudioMgr():
                                                  "Remove displayed audio from Lesson",
                                                  "Lesson vocabulary list",
                                                  "Lesson study sheet in Hebrew",
-                                                 "Lesson study sheet in English",
+                                                 "Lesson study sheet in English",                                              
+                                                 "Answers to lesson exercices",
                                                  command=self.execute_lesson_option)
         self.lesson_audio_optmnu.configure(fg=FG_COLOR, bg=BG_COLOR,
                                            activebackground=BG_COLOR)
@@ -1526,6 +1528,7 @@ class AudioMgr():
         # that they actually contain text.
         english_text = self.new_english.get()
         hebrew_text = self.hebrew.get()
+        hebrew_no_niqqud = self.remove_niqqud(hebrew_text)
         audio_file_name = self.audio_file.get()
         lesson_name = self.lesson.get()
 
@@ -1539,8 +1542,8 @@ class AudioMgr():
 
                 if not contains_text(lesson_name):
                     sql_stmt = \
-                      ('INSERT INTO hebrew_audio(english, hebrew, audio_file)'
-                       f' VALUES("{english_text}", "{hebrew_text}", "{audio_file_name}");')
+                      ('INSERT INTO hebrew_audio(english, hebrew, hebrew_no_niqqud, audio_file)'
+                       f' VALUES("{english_text}", "{hebrew_text}", "{hebrew_no_niqqud}", "{audio_file_name}");')
                 else:
                     #  If the lesson name isn't in the LESSON table
                     # it must be a new lesson so add it. In any event,
@@ -1565,8 +1568,8 @@ class AudioMgr():
                         self.lessons_cbo['values'] = self.get_lessons()
                     lesson_id = row['lesson_id']
                     sql_stmt = \
-                      ('INSERT INTO hebrew_audio(english, hebrew, audio_file, lesson_id)'
-                       f' VALUES("{english_text}", "{hebrew_text}", "{audio_file_name}",'
+                      ('INSERT INTO hebrew_audio(english, hebrew, hebrew_no_niqqud, audio_file, lesson_id)'
+                       f' VALUES("{english_text}", "{hebrew_text}", "{hebrew_no_niqqud}", "{audio_file_name}",'
                        f'{lesson_id} );')
                     
                 if DEBUG:
@@ -1652,16 +1655,35 @@ class AudioMgr():
     #_____________________________________
     def create_html_study_sheet(self, **study_subjects):
         """
-           Creates an html file consisting of an alphabetical
-          list of the Hebrew and their English translations
-          in the lesson's or category's vocabulary
+           Creates an html file that displays a list of the
+          lesson's or the category's vocabulary of Hebrew
+          words and their English translations
+          
+           Three types of study sheets are possible:
+           a listing of the lesson's or the category's
+            1. vocabulary that displays both the Hebrew and
+              its English equivalent
+            2. a listing of just the Hebrew vocabulary that
+              allows entering the English equivalent
+            3. a listing of the English vocabulary that allows
+              entering the Hebrew equivalent. English characters
+              entered from the keyboard are mapped to Hebrew
+              characters. The mapping mimcs what's used on the 
+              website doitinhebrew.com
+           In both 2 and 3 an "Answer" button is provided that toggles
+          each answer on or off and a "Hide Answers" button that blanks
+          out all the answers to allow retesting.
+           In all tests a "Pealim" button is provided for each Hebrew word. 
+          When clicked it will display the pealim.com webpage for that Hebrew
+          word if found.   
         """
         if DEBUG:
                 current_function = sys._getframe().f_code.co_name
                 display_function(current_function)
                 
         #  Search the dictionary "study_subjects" passed to the
-        # function to determine language and source of vocabulary
+        # function to determine the language and the source of
+        # the vocabularyvocabulary
         if 'language' in study_subjects:
             language = study_subjects['language']
         else:
@@ -1669,9 +1691,15 @@ class AudioMgr():
             
         if 'lesson' in study_subjects:
             lesson = study_subjects['lesson']
+            # Stick Lesson between Hs-yesod and lesson number
+            # to form the study sheet's title
             study_title = lesson.replace(' ', ' Lesson ')
+            #  Named section found in the present and past
+            # tense verb HTML pages
+            lesson_link = lesson.replace('Ha-yesod', '#Lesson')
         else:
             lesson = None
+            lesson_link = ''
                
         if 'category' in study_subjects:
             category = study_subjects['category']
@@ -1693,8 +1721,13 @@ class AudioMgr():
          '</head> \n'
          '<body> \n'
          f'   <h2 class="lesson_header"> {study_title} </h2> \n'
-         f'<a href="Ha-yesod-verbs.html" target="_blank">Ha-Yesod Verbs</a> <br>\n'
-         f'<a href="grammar_verbs.html" target="_blank">Verb Conjugation</a> \n'
+         '<a href="Ha-yesod_verb_list.html" target="_blank">Ha-Yesod Verb List</a> <br>\n'
+         f'<a href="Ha-yesod-verbs_present.html{lesson_link}" target="_blank">Ha-Yesod Verbs Present Tense</a> <br>\n'
+         f'<a href="Ha-yesod-verbs_past.html{lesson_link}" target="_blank">Ha-Yesod Verbs Past Tense</a> <br>\n'
+         '<a href="grammar_verbs.html" target="_blank">Verb Conjugation</a> <br><br>\n'
+         '<a href="https://www.pealim.com" target="_blank">\n'
+         '   <img src="pealim.png" alt="Pealim Logo" style="width:24px;height:24px;"></a>\n'
+         ' <a style="color:#2c6cac;"> Displays the pealim.com webpage for the Hebrew word (if found). </a><br>\n'
          f'<h4> {language} Vocabulary:</h4> \n'
          '<table > \n'
          '<colgroup> \n'
@@ -1729,9 +1762,14 @@ class AudioMgr():
             with io.open(study_sheet ,'w', encoding='utf8') as study_file:
                 study_file.write(test_template)
                 if language != 'English, Hebrew':
-                    study_file.write(('<td></td><td></td><td></td>'
-                                      '<td> <button class="hide_answers_button" '
-                                      ' onclick="hide_answers()">Hide Answers</button></td>'))
+                    study_file.write(('<tr>\n'
+                                      '   <td></td>\n'
+                                      '   <td></td>\n'
+                                      '   <td></td>\n'
+                                      '   <td></td>\n'
+                                      '   <td>&nbsp &nbsp</td>\n'
+                                      '   <td> <button class="hide_answers_button" onclick="hide_answers()">Hide Answers</button></td>\n'
+                                      '</tr>\n'))
           
                 if lesson:
                     sql_stmt = (f'SELECT english, hebrew, audio_file FROM hebrew_audio \n'
@@ -1750,26 +1788,31 @@ class AudioMgr():
 
                 row_num = 0
                 for row in SQL.fetchall():
+                    pealim_search = row['hebrew'] 
+                    pealim_button = (f'   <td><a href="https://www.pealim.com/search/?q={pealim_search}" target="_blank"> \n'
+                                     '       <img src="pealim.png" alt="Pealim Logo" style="width:24px;height:24px;"></a></td> \n')
                     if language == 'English, Hebrew':
                         row_num += 1
                         # Write a row consisting of an English column and a Hebrew column
                         study_file.write('<tr> \n')
                         # English column of the row
-                        study_file.write(f'<td class="english_text">&nbsp &nbsp {row["english"]}</td> \n')
+                        study_file.write(f'   <td class="english_text">&nbsp &nbsp {row["english"]}</td> \n')
                         
                         audio_id = f'audio_{row_num}'
                         if row['audio_file'] == 'No Audio':
                             audio_found = False
-                            cursor_icon = 'no-drop'
+                            cursor_icon = 'no-audio-cursor'
                         else:
                             audio_found = True
-                            cursor_icon = 'pointer'
+                            cursor_icon = 'play-audio-cursor'
                         # Hebrew column of the row
-                        study_file.write(f'<td class="hebrew_text {cursor_icon}" onclick="play(\'{audio_id}\')">&nbsp {row["hebrew"]}</td> \n')
+                        study_file.write(f'   <td class="hebrew_text {cursor_icon}" onclick="play(\'{audio_id}\')">&nbsp {row["hebrew"]}</td> \n')
                         if audio_found:
-                            study_file.write(f'<audio id="{audio_id}" src="{row["audio_file"]}"></audio> \n')
+                            study_file.write(f'   <audio id="{audio_id}" src="{row["audio_file"]}"></audio> \n')
+                        # Pealim button column
+                        study_file.write(f'   <td>&nbsp &nbsp</td>\n{pealim_button}')
                         study_file.write('</tr> \n')
-                    else: 
+                    else:
                         if language == 'Hebrew':
                             test_text = row['hebrew'].strip()  
                             if not niqqud:
@@ -1796,47 +1839,54 @@ class AudioMgr():
                         audio_file = row['audio_file']
                         if audio_file == 'No Audio':
                             audio_found = False
-                            cursor_icon = 'no-drop'
+                            cursor_icon = 'no-audio-cursor'
                         else:
                             audio_found = True
-                            cursor_icon = 'pointer'
+                            cursor_icon = 'play-audio-cursor'
                         #  Write a row with columns for the answer input, the word being tested,
                         # a "display answer" button and the answer to be displayed when the button
                         # is pressed. Actually, the "display answer" button toggles the display
                         #  of the answer on and off.
                         study_file.write('<tr> \n')
                         # Answer input column
-                        study_file.write((f'<td><input type="text" class="{input_class}" '
-                                     ' name="comment" value=" "></td> \n'))
+                        study_file.write((f'   <td><input type="text" class="{input_class}" '
+                                          ' name="comment" value=" "></td> \n'))
 
-                        answer_button = (f'<td class="answer_button">'
+                        answer_button = (f'   <td class="answer_button">'
                                          f'<button onclick="toggle_answer_display(\'{answer_text_id}\')">Answer</button></td> \n')
+
                         
                         if language == 'Hebrew':
                             # Test word column
-                            study_file.write((f'<td class="{translation} {row_class} {cursor_icon}" onclick="play(\'{audio_id}\')">'
+                            study_file.write((f'   <td class="{translation} {row_class} {cursor_icon}" onclick="play(\'{audio_id}\')">'
                                               f'&nbsp &nbsp {test_text}</td> \n'))
                             
                             # Answer button column
                             study_file.write(f'{answer_button}')
                             
+                            # Pealim button column
+                            study_file.write(f'{pealim_button}   <td></td>\n')
+                            
                             # Answer text column
-                            study_file.write((f'<td id="{answer_text_id}" class="answer_text english_text">{answer_text}</td>'))
+                            study_file.write((f'   <td id="{answer_text_id}" class="answer_text english_text {row_class}">{answer_text}</td> \n'))
                         else:
                             # Test word column
-                            study_file.write((f'<td class="{translation} {row_class}">'
+                            study_file.write((f'   <td class="{translation} {row_class}">'
                                               f'&nbsp &nbsp {test_text}</td> \n'))
                             
                            # Answer button column
                             study_file.write(f'{answer_button}')
+
+                            # Pealim button column
+                            study_file.write(f'{pealim_button}   <td></td>\n')
                             
                             # Answer text column
-                            study_file.write((f'<td id="{answer_text_id}" class="answer_text hebrew_text {cursor_icon}" '
-                                              f' onclick="play(\'{audio_id}\')">{answer_text}</td>'))
+                            study_file.write((f'   <td id="{answer_text_id}" class="answer_text hebrew_text {cursor_icon} {row_class}" '
+                                              f' onclick="play(\'{audio_id}\')">{answer_text}</td> \n'))
 
                             
                         if audio_found:
-                            study_file.write(f'<audio id="{audio_id}" src="{audio_file}"></audio> \n')                                                  
+                            study_file.write(f'   <audio id="{audio_id}" src="{audio_file}"></audio> \n')                                                  
                         study_file.write('</tr> \n')
                         
                 study_file.write("</tbody> \n")
@@ -1849,7 +1899,6 @@ class AudioMgr():
                                      '    elements[i].addEventListener("keyup", convertTextToHebrew, false); \n'
                                      '} \n'
                                      '</script> \n'))
-                study_file.write("</tbody> \n") 
                 study_file.write("</body> \n")
                 study_file.write("</html> \n")
 
@@ -1882,11 +1931,11 @@ class AudioMgr():
                     print(f'webpage={webpage}')
                 webbrowser.open_new(webpage)
             else:
-                msg = f'Webpage NOT found:\n {webpage}.'
-                messagebox.showinfo('No Web Page', msg)
+                msg = f'Lesson answer webpage NOT found:\n {webpage}.'
+                messagebox.showinfo('No Lesson Webpage', msg)
         else:
             msg = "No URL entry"
-            messagebox.showinfo('No Web Page', msg)
+            messagebox.showinfo('No Lesson Webpage', msg)
 
         if DEBUG:
             display_function_completion(current_function)
@@ -2051,10 +2100,12 @@ class AudioMgr():
                 english = selection[0].strip()
                 audio_id = selection[1].strip()
                 hebrew = self.hebrew_text.get()
+                hebrew_no_niqqud = self.remove_niqqud(hebrew)
                 audio_file = self.audio_file_entry.get()
                 if option.startswith('Save'):
                     sql_stmt = (" UPDATE hebrew_audio "
                                 f"  SET english = '{english}',  hebrew = '{hebrew}',"
+                                f"    hebrew_no_niqqud = '{hebrew_no_niqqud}', "
                                 f"    audio_file = '{audio_file}'"
                                 f" WHERE audio_id = {audio_id} ;")
                     SQL.execute(sql_stmt)
@@ -2257,6 +2308,8 @@ class AudioMgr():
                 self.create_html_study_sheet(lesson=lesson_name,
                                                language=language)
                 #self.create_lesson_test_sheet(lesson_name, language)
+        elif option.startswith('Answers'):
+            self.display_lesson_webpage()
         else:
             selection = selected_audio.split('|')
             english = selection[0].strip()

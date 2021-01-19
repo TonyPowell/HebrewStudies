@@ -1,0 +1,21 @@
+ Updated vocabulary to include Lesson 15
+ Updated HTML page for present tense verbs to include Lesson 15, 16 & 17
+ Added HTML page for past tense verbs 
+ Added past tense conjugation rules to the HTML page of verb conjugations 
+ Added cross links for verbs that are in both the past tense and the present tense 
+HTML pages
+ Added an HTML page listing Ha-yesod verbs.
+ Added links to pealim.com for all Hebrew words in the vocabulary and study sheets 
+and the present and past tense verb HTML pages.
+ Added "Answers to lesson exercises" option to Lesson combo box dropdown options. 
+ Cleaned up formatting of program generated vocabulary and study sheet HTML files
+ Added english_input and hebrew_input to objects that are cleared in the javascript
+hide_answers function in hebrew.js
+ Added no-audio-cursor and play-audio-cursor to hebrew.css
+ Added the column HEBREW_NO_NIQQUD to the HEBREW_AUDIO table which is simply the
+HEBREW column of the table stripped of the niqqud. This seemed the simplest 
+solution to the problem of searching the HEBREW_AUDIO table without having to
+know the correct niqqud for the Hebrew. 
+ To accomodate the new HEBREW_NO_NIQQUD column added to the HEBREW_AUDIO table,
+updated the functions search_audio_table, add_audio_to_db and the 
+"Save changes to displayed Audio" code of the execute_audio_option function.
